@@ -127,7 +127,7 @@ func TtyStart() {
 	http.Handle("/tty", websocket.Handler(TtyHandler))
 	addr := beego.AppConfig.String("ttyport")
 	if addr == "" {
-		addr = "8999"
+		addr = "9089"
 	}
 	logs.Info("web terminal port:", addr)
 	err := http.ListenAndServe(":"+addr, nil)

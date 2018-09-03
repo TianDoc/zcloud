@@ -19,6 +19,7 @@ target
 .gitignore.bak
 other-api.properties\
 
-app.conf
-server.key
-server.pem
+bin/
+pkg/
+make.go
+.vscode/

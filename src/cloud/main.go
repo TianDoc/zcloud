@@ -1,17 +1,15 @@
 package main
 
 import (
-	_ "cloud/routers"
-	_ "github.com/astaxie/beego/session/redis"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/astaxie/beego"
 	"cloud/controllers/index"
-	"cloud/tty"
-	"github.com/cesanta/docker_auth/auth_server"
 	"cloud/crontab"
-
+	_ "cloud/routers"
+	"cloud/tty"
+	"github.com/astaxie/beego"
+	_ "github.com/astaxie/beego/session/redis"
+	"github.com/cesanta/docker_auth/auth_server"
+	_ "github.com/go-sql-driver/mysql"
 )
-
 
 //https://ant.design/docs/resource/download-cn
 //https://beego.me/docs/mvc/controller/session.md
@@ -25,13 +23,14 @@ import (
 // http://docs.tenxcloud.com/guide/coderepos
 // 2018-01-26 15:11
 
-
 func main() {
 	//data := k8s.GetNodeImage("10.16.55.114","6443","10.16.55.115")
 	//logs.Info(util.ObjToString(data))
 	beego.ErrorController(&index.ErrorController{})
 	beego.BConfig.WebConfig.Session.SessionProvider = "redis"
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = beego.AppConfig.String("redis")
+	//beego.BConfig.WebConfig.Session.SessionProvider = "redis"
+	//beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
 	go tty.TtyStart()
 	go auth_server.StartRegistryAuthServer()
 	go crontab.CronStart()

@@ -906,6 +906,7 @@ func init() {
 		uri := ctx.Request.RequestURI
 		setUserLogin(ctx)
 		if !strings.Contains(uri, "/static/") && !strings.Contains(uri, "/api/user/login") {
+			fmt.Println(ctx.Input)
 			_, ok := ctx.Input.Session("username").(string)
 			uris := strings.Split(uri, "?referer=/")
 			if !ok && uri != "/login" && uris[0] != "/login" {

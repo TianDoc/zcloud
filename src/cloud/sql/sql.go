@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"strings"
 	"sync"
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/context"
 	"net/http"
@@ -427,7 +426,8 @@ func DeleteSql(sql string, data SearchMap) string {
 func init() {
 	orm.Debug = true
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", beego.AppConfig.String("mysql"))
+	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/cloud?charset=utf8")
+	//orm.RegisterDataBase("default", "mysql", beego.AppConfig.String("mysql"))
 }
 
 func GetOrm() orm.Ormer {

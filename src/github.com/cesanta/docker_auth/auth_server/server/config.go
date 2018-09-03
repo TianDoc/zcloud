@@ -110,7 +110,7 @@ func LoadConfig() (*Config, error) {
 	var err error
 	c := &Config{}
 	c.Token = TokenConfig{Issuer:"Acme auth server",Expiration:900}
-	c.Server = ServerConfig{ListenAddress:":5001"}
+	c.Server = ServerConfig{ListenAddress:":5002"}
 	pwd,_ := os.Getwd()
 	key := filepath.Join(pwd,"conf", "key", "server.key")
 	pem := filepath.Join(pwd,"conf", "key", "server.pem")
